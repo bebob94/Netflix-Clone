@@ -1,11 +1,14 @@
 import "./App.css";
-// import MyNav from "./Components/MYnavBar";
-import { Row } from "react-bootstrap";
+import MyBody from "./Components/MyBody";
+import MyFooter from "./Components/MyFooter";
+import MyNavBar from "./Components/MyNavBar";
 
 function App() {
   return (
     <div className="App">
-      <Row></Row>
+      <MyNavBar />
+      <MyBody />
+      <MyFooter />
     </div>
   );
 }
