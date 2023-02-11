@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
+
 import { Component } from "react";
 import Loading from "./Loading";
 import Error from "./Error";
 import { Modal, Button } from "react-bootstrap";
+
 class MyCards extends Component {
   state = {
     isLoading: true,
     isError: false,
     query: [],
     modalOpen: false,
-    selectedMovieId: "",
+    // selectedMovieId: "",
     selectedMovie: {},
     selectedMovie2: {},
   };
@@ -75,7 +77,7 @@ class MyCards extends Component {
   };
 
   closeModal = async () => {
-    this.setState({ modalOpen: false });
+    this.setState({ modalOpen: false, selectedMovie2: {} });
     console.log(this.state.modalOpen);
   };
 
@@ -95,9 +97,12 @@ class MyCards extends Component {
             }}
           >
             <img
-              className="m-2 mb-4 "
+              className="m-2 mb-4"
               src={movie.Poster}
-              style={{ height: "180px", width: "120px" }}
+              style={{
+                height: "180px",
+                width: "120px",
+              }}
             ></img>
 
             <Modal show={this.state.modalOpen} onHide={this.openModal}>
@@ -130,3 +135,12 @@ class MyCards extends Component {
   }
 }
 export default MyCards;
+
+// Lidia prima di correggere il compito vorrei chiederti una cosa perchè ho provato a fare il modale,
+// dopo che lo ho visto da Vincenzo, sia perchè mi piaceva l'idea sia per allenarmi, però ci sono 2 problemi
+// che non capisco da dove arrivino e non so risolvere, ma sono sicuro siano cazzate facilmente risolvibili.
+// 1) quando apro il modale se clicco fuori dalla card mi da un fatal error (quindi entra nel catch) e
+// non capisco perchè.
+// 2) quando clicco il tasto chiudi del modale poco prima di chiudersi switcha all'ultima card della sezione
+// che sta ciclando, ho cercato di risolvere mettendo il secondo fatch in una nuova variabile dello state
+// ma non ho risolto

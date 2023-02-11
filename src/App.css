@@ -68,3 +68,8 @@ p:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.modal-content {
+  background-color: #3f3c3c !important;
+  color: white;
+}
