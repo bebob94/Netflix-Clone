@@ -9,7 +9,9 @@ class MyCards extends Component {
     isError: false,
     query: [],
     modalOpen: false,
+    selectedMovieId: "",
     selectedMovie: {},
+    selectedMovie2: {},
   };
 
   componentDidMount = async () => {
@@ -37,9 +39,39 @@ class MyCards extends Component {
   };
 
   openModal = async (movie) => {
-    this.setState({ modalOpen: true, selectedMovie: movie });
-    // console.log(this.state.selectedMovie);
-    console.log(movie);
+    try {
+      this.setState({
+        modalOpen: !this.state.modalOpen,
+        selectedMovie: movie,
+        // selectedMovieId: movie.imdbID,
+      });
+      // console.log(this.state.selectedMovie);
+      // console.log(movie);
+      // console.log(this.state.selectedMovie);
+      let response = await fetch(
+        `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=e29e6245`
+      );
+
+      console.log(response);
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        this.setState({
+          selectedMovie2: data,
+          isLoading: false,
+          isError: false,
+        });
+
+        // console.log(this.state.selectedMovie2);
+      } else {
+        console.log("error");
+        this.setState({ isLoading: false, isError: true });
+      }
+    } catch (error) {
+      alert("Fatal Error", error);
+
+      this.setState({ isLoading: false, isError: true });
+    }
   };
 
   closeModal = async () => {
@@ -68,17 +100,22 @@ class MyCards extends Component {
               style={{ height: "180px", width: "120px" }}
             ></img>
 
-            <Modal show={this.state.modalOpen} onHide={this.closeModal}>
-              <Modal.Header closeButton>
+            <Modal show={this.state.modalOpen} onHide={this.openModal}>
+              <Modal.Header>
                 <Modal.Title>
-                  Titolo: {this.state.selectedMovie.Title}
+                  Titolo: {this.state.selectedMovie2.Title}
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>{`Genere: ${this.state.selectedMovie.Genre}`}</p>
-                <p>{`Anno: ${this.state.selectedMovie.Year}`}</p>
-                <p>{`Regista: ${this.state.selectedMovie.Director}`}</p>
-                <p>{`Attori: ${this.state.selectedMovie.Actors}`}</p>
+                <img
+                  src={this.state.selectedMovie2.Poster}
+                  alt={this.state.selectedMovie2.Title}
+                  style={{ height: "180px" }}
+                />
+                <p>{`Genere: ${this.state.selectedMovie2.Genre}`}</p>
+                <p>{`Anno: ${this.state.selectedMovie2.Year}`}</p>
+                <p>{`Regista: ${this.state.selectedMovie2.Director}`}</p>
+                <p>{`Attori: ${this.state.selectedMovie2.Actors}`}</p>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.closeModal}>
