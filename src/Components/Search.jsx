@@ -13,6 +13,7 @@ class Search extends Component {
 
   InputChange = (event) => {
     this.setState({ inputText: event.target.value });
+    console.log(this.state.inputText);
   };
 
   fetchData = async () => {
@@ -63,7 +64,6 @@ class Search extends Component {
           type="text"
           placeholder="Film da cercare"
           className="m-2"
-          value={this.state.inputText}
           onChange={this.InputChange}
           onKeyPress={(event) => {
             if (event.key === "Enter") {
@@ -109,4 +109,7 @@ export default Search;
 // rompe la pagina, mercoledì ho prenotato un 1 vs 1 perchè non so usare benissimo gli eventi degli onclick
 // e degli on changhe per fare dei fetch
 
-// Lidiaaaaaaaaaa ci sono riuscitoooooooooooooooooooooooooooooooooo cazzooooooooooooo :')
+//ps) Lidiaaaaaaaaaa ci sono riuscitoooooooooooooooooooooooooooooooooo  :')
+
+// pps) come non detto se metto un titolo generico come "the" entra nel catch dicendomi "too many results",
+//  non so come risolverlo tutto il resto funziona
