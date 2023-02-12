@@ -28,6 +28,7 @@ class Search extends Component {
 
       // inizio seconda fetch
       const firstMovie = dat.Search[0];
+      // qua prendo solo il primo elemento dell'array che mi ritorna
       let response = await fetch(
         `http://www.omdbapi.com/?i=${firstMovie.imdbID}&apikey=e29e6245`
       );
@@ -112,4 +113,12 @@ export default Search;
 //ps) Lidiaaaaaaaaaa ci sono riuscitoooooooooooooooooooooooooooooooooo  :')
 
 // pps) come non detto se metto un titolo generico come "the" entra nel catch dicendomi "too many results",
-//  non so come risolverlo tutto il resto funziona
+//  non so come risolverlo, tutto il resto funziona
+
+// ppps) ho scritto su postmat il fetch con scritto "the" "aa" e ho visto che il problema nasce da la e
+// non dal codice, se trova troppi risultati non ritorna nulla, più precisamente mi ritorna questo:
+// {
+//   "Response": "False",
+//   "Error": "Too many results."
+// }
+// ho optato per far uscire un modale con scritto inserisci un altro nome oltre all'errore comune.
