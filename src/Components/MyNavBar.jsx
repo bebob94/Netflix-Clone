@@ -3,8 +3,19 @@
 
 import React, { Component } from "react";
 import logo from "../assets/logo.png";
+import Search from "./Search";
 
-class MyFooter extends Component {
+class MyNavBar extends Component {
+  state = {
+    searchVisible: false,
+  };
+
+  handleSearchClick = () => {
+    this.setState({
+      searchVisible: !this.state.searchVisible,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -78,7 +89,13 @@ class MyFooter extends Component {
                   </a>
                 </li>
               </ul>
-              <i className="fa fa-search icons" />
+              {/* Qua ho creato un input text che appare solo al click dell'icona search, o almeno è quello che spero di fare*/}
+              <i
+                className="fa fa-search icons"
+                onClick={this.handleSearchClick}
+              />
+              {this.state.searchVisible && <Search />}
+
               <div id="kids">KIDS</div>
               <i className="fa fa-bell icons" />
               <i className="fa fa-user icons" />
@@ -90,4 +107,4 @@ class MyFooter extends Component {
   }
 }
 
-export default MyFooter;
+export default MyNavBar;
