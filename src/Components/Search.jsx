@@ -65,6 +65,7 @@ class Search extends Component {
           type="text"
           placeholder="Film da cercare"
           className="m-2"
+          value={this.inputText}
           onChange={this.InputChange}
           onKeyPress={(event) => {
             if (event.key === "Enter") {
