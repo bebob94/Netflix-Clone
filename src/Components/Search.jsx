@@ -67,7 +67,7 @@ class Search extends Component {
           className="m-2"
           value={this.inputText}
           onChange={this.InputChange}
-          onKeyPress={(event) => {
+          onKeyUp={(event) => {
             if (event.key === "Enter") {
               this.fetchData();
             }
