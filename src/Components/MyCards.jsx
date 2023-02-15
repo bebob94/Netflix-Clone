@@ -3,7 +3,8 @@
 import { Component } from "react";
 import Loading from "./Loading";
 import Error from "./Error";
-import { Modal, Button } from "react-bootstrap";
+// import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class MyCards extends Component {
   state = {
@@ -87,7 +88,8 @@ class MyCards extends Component {
         {this.state.isError && <Error />}
         {this.state.query.slice(0, 8).map((movie) => (
           <div
-            onClick={() => this.openModal(movie)}
+            // onClick={() => this.openModal(movie)}
+
             key={movie.imdbID}
             style={{
               display: "inline-block",
@@ -95,17 +97,19 @@ class MyCards extends Component {
               textAlign: "center",
             }}
           >
-            <img
-              className="m-2 mb-4"
-              src={movie.Poster}
-              style={{
-                height: "180px",
-                width: "120px",
-              }}
-            ></img>
+            <Link to={`/Details/${movie.imdbID}`}>
+              <img
+                className="m-2 mb-4"
+                src={movie.Poster}
+                style={{
+                  height: "180px",
+                  width: "120px",
+                }}
+              ></img>
+            </Link>
           </div>
         ))}
-        <Modal show={this.state.modalOpen} onHide={this.closeModal}>
+        {/* <Modal show={this.state.modalOpen} onHide={this.closeModal}>
           <Modal.Header>
             <Modal.Title>Titolo: {this.state.selectedMovie2.Title}</Modal.Title>
           </Modal.Header>
@@ -125,7 +129,7 @@ class MyCards extends Component {
               Chiudi
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
       </>
     );
   }

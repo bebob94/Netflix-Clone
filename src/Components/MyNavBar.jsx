@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import logo from "../assets/logo.png";
 import Search from "./Search";
-
+import { Link } from "react-router-dom";
 class MyNavBar extends Component {
   state = {
     searchVisible: false,
@@ -63,31 +63,20 @@ class MyNavBar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <a className="nav-link font-weight-bold" href="#">
-                    Home <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item active">
-                  <a className="nav-link font-weight-bold" href="#">
-                    TV Shows
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link font-weight-bold" href="#">
-                    Movies
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link font-weight-bold" href="#">
-                    Recently Added
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link font-weight-bold" href="#">
-                    My List
-                  </a>
-                </li>
+                <Link className="nav-link" to="/MyBody">
+                  Home <span className="sr-only">(current)</span>
+                </Link>
+
+                <Link className="nav-link" to="/TvShows">
+                  TV Shows
+                </Link>
+                <Link className="nav-link" to="/Movies">
+                  Movies
+                </Link>
+
+                <Link className="nav-link" to="">
+                  My List
+                </Link>
               </ul>
               {/* Qua ho creato un input text che appare solo al click dell'icona search, o almeno è quello che spero di fare*/}
               <i
