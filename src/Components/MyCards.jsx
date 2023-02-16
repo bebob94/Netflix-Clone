@@ -40,46 +40,46 @@ class MyCards extends Component {
     }
   };
 
-  openModal = async (movie) => {
-    try {
-      this.setState({
-        modalOpen: !this.state.modalOpen,
-        selectedMovie: movie,
-        // selectedMovieId: movie.imdbID,
-      });
-      // console.log(this.state.selectedMovie);
-      // console.log(movie);
-      // console.log(this.state.selectedMovie);
-      let response = await fetch(
-        `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=e29e6245`
-      );
+  // openModal = async (movie) => {
+  //   try {
+  //     this.setState({
+  //       modalOpen: !this.state.modalOpen,
+  //       selectedMovie: movie,
+  //       // selectedMovieId: movie.imdbID,
+  //     });
+  //     // console.log(this.state.selectedMovie);
+  //     // console.log(movie);
+  //     // console.log(this.state.selectedMovie);
+  //     let response = await fetch(
+  //       `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=e29e6245`
+  //     );
 
-      console.log(response);
-      if (response.ok) {
-        let data = await response.json();
-        console.log(data);
-        this.setState({
-          selectedMovie2: data,
-          isLoading: false,
-          isError: false,
-        });
+  //     console.log(response);
+  //     if (response.ok) {
+  //       let data = await response.json();
+  //       console.log(data);
+  //       this.setState({
+  //         selectedMovie2: data,
+  //         isLoading: false,
+  //         isError: false,
+  //       });
 
-        // console.log(this.state.selectedMovie2);
-      } else {
-        console.log("error");
-        this.setState({ isLoading: false, isError: true });
-      }
-    } catch (error) {
-      alert(error);
+  //       // console.log(this.state.selectedMovie2);
+  //     } else {
+  //       console.log("error");
+  //       this.setState({ isLoading: false, isError: true });
+  //     }
+  //   } catch (error) {
+  //     alert(error);
 
-      this.setState({ isLoading: false, isError: true });
-    }
-  };
+  //     this.setState({ isLoading: false, isError: true });
+  //   }
+  // };
 
-  closeModal = async () => {
-    this.setState({ modalOpen: false, selectedMovie2: {} });
-    console.log(this.state.modalOpen);
-  };
+  // closeModal = async () => {
+  //   this.setState({ modalOpen: false, selectedMovie2: {} });
+  //   console.log(this.state.modalOpen);
+  // };
 
   render() {
     return (

@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -6,25 +6,24 @@ const DetailsCard = () => {
   const params = useParams();
 
   const [film, setFilm] = useState([]);
-
-  const myFilm = async () => {
-    try {
-      let response = await fetch(
-        `http://www.omdbapi.com/?i=${params.id}&apikey=e29e6245`
-      );
-      if (response.ok) {
-        let data = await response.json();
-        console.log(data);
-        setFilm(data);
-      } else {
-        alert("merda qualcosa è andato storto");
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
-
   useEffect(() => {
+    const myFilm = async () => {
+      try {
+        let response = await fetch(
+          `http://www.omdbapi.com/?i=${params.id}&apikey=e29e6245`
+        );
+        if (response.ok) {
+          let data = await response.json();
+          console.log(data);
+          setFilm(data);
+        } else {
+          alert("merda qualcosa è andato storto");
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+
     myFilm();
   }, [params.id]);
 
